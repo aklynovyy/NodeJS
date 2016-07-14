@@ -1,4 +1,5 @@
 var keysModule = require('./weatherModule.js');
+var _ = require('lodash-node');
 
 module.exports = (function() {
 	
@@ -27,12 +28,12 @@ module.exports = (function() {
 		'</header>';
 	};
 
-	var getMain = function (params) {
+	var getMain = function (param) {
 		return '<main>' + 
-			getMainContainer() + getSearch(params) +
+			// getMainContainer() + getSearch(param) +
+			getMainContainer() +
 		'</main>'
-
-	}
+	};
 	
 	var getMainContainer = function () {
 		return '<div class="container">' +
@@ -53,25 +54,25 @@ module.exports = (function() {
 	  '</div>';
 	};
 
-	var getSearch = function (params) {
+	var getSearch = function () {
 		var param = $("#select-param").val();
-		var searchArray = serachParam(param);
+		var searchArray = searchParam(param);
 		if (param == "maxTemp") {
-			var serachParamItem = "The maximum temperature in " 
+			var searchParamItem = "The maximum temperature in " 
 			+ searchArray.city + " " + searchArray.day + " january: " + searchArray.maxParam + "C";
 		} else if (param == "maxHum") {
-			var serachParamItem = "Maximum humidity in " 
+			var searchParamItem = "Maximum humidity in " 
 			+ searchArray.city + " " + searchArray.day + " january: " + searchArray.maxParam;
 		}  else if (param == "maxWF") {
-			var serachParamItem = "The maximum wind force in " 
+			var searchParamItem = "The maximum wind force in " 
 			+ searchArray.city + " " + searchArray.day + " january: " + searchArray.maxParam;
 		}	
 
 		//getElementById("search-btn").click();
-		// $("#param-description").html(serachParamItem);
-	}
+		// $("#param-description").html(searchParamItem);
+	};
 
-	// console.log(serachParamItem);
+	// console.log(searchParamItem);
 	// console.log(globalStatistic);
 
 	return {
