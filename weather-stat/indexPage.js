@@ -7,43 +7,53 @@ module.exports = (function() {
 			getPageHead() +
 			'<body>' + 
 			getPageHeader() + 
-		// getMain(params) +
-			getPageContaainer() +
+			getMain(params) +
 			'</body></html>';
 	};
 	
-	var getPageHead = function (params) {
-		return '<head><title>No way</title></head>';
+	var getPageHead = function () {
+		return '<head>' +
+			'<title>No way</title>' +
+			'<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">' +
+			'<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>' + 
+		'</head>';
 	};
 	
-	var getPageHeader = function (params) {
+	var getPageHeader = function () {
 		return '<header class="page-header">' +
 	  	'<div class="container">' +
 	  		'<h1>Weather Statistics</h1>' +
 			'</div>'
 		'</header>';
 	};
+
+	var getMain = function (params) {
+		return '<main>' + 
+			getMainContainer() + getSearch(params) +
+		'</main>'
+
+	}
 	
-	var getPageContaainer = function () {
+	var getMainContainer = function () {
 		return '<div class="container">' +
-    	'<h2>Search maximum value</h2>' +
+			'<form method="POST">' + 
+	    	'<h2>Search maximum value</h2>' +
 		    '<select id="select-param">' +
 		      '<option value="">Select option</option>' +
 		      '<option value="maxTemp">Maximum Temperature</option>' +
 		      '<option value="maxHum">Maximum Tumidity</option>' +
 		      '<option value="maxWF">Maximum wind Force</option>' +
 		    '</select>' + 
-	    '<button id="search-btn" class="btn btn-info">Search</button>' +
-	    '<button id="global-stat-btn" class="btn btn-warning">Statistic</button>' +
-	    '<h3 id="param-description"></h3>' +
-	    '<div id="total-table"></div>' +
-	    '<h4 id="total-statistic"></h4>' +
+		    '<button id="search-btn" class="btn btn-info">Search</button>' +
+		    '<button id="global-stat-btn" class="btn btn-warning">Statistic</button>' +
+		    '<h3 id="param-description"></h3>' +
+		    '<div id="total-table"></div>' +
+		    '<h4 id="total-statistic"></h4>' +
+	    '</form>'
 	  '</div>';
 	};
 
-
-	
-	function search() {
+	var getSearch = function (params) {
 		var param = $("#select-param").val();
 		var searchArray = serachParam(param);
 		if (param == "maxTemp") {
@@ -57,9 +67,12 @@ module.exports = (function() {
 			+ searchArray.city + " " + searchArray.day + " january: " + searchArray.maxParam;
 		}	
 
-		document.getElementById("search-btn").click();
-		$("#param-description").html(serachParamItem);
+		//getElementById("search-btn").click();
+		// $("#param-description").html(serachParamItem);
 	}
+
+	// console.log(serachParamItem);
+	// console.log(globalStatistic);
 
 	return {
 		getPage: getPage

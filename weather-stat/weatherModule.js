@@ -115,7 +115,7 @@ function serachParam(param){
 	});
 }
 
-	function RandomTemp() {
+	var RandomTemp = function () {
 		var random = Math.random();
 		if (random < 0.01) {
 			return -1;
@@ -130,7 +130,7 @@ function serachParam(param){
 		}
 	}
 
-	function RandomWindForce() {
+	var RandomWindForce = function () {
 		var random = Math.random();
 		if (random < 0.01) {
 			return 27;
@@ -145,7 +145,7 @@ function serachParam(param){
 		}
 	}
 
-	function RandomHum(){
+	var  RandomHum = function () {
 		var random = Math.random();
 		if (random < 0.01) {
 			return 35;
@@ -160,7 +160,7 @@ function serachParam(param){
 		} 
 	}
 
-	function RandomWind(){
+	var RandomWind = function () {
 		var random = Math.random();
 		if (random < 0.01) {
 			return "SW";
@@ -184,11 +184,12 @@ function serachParam(param){
 			dataArray.push({
 				city: citiesArray[j],
 				day: i,
-				humidity:RandomHum(),
-				temperature: RandomTemp().toFixed(2),
-				directionOfTheWind: RandomWind(),
-				RandomWindForce: RandomWindForce()
+				humidity:RandomHum,
+				temperature: RandomTemp.toFixed(2),
+				directionOfTheWind: RandomWind,
+				RandomWindForce: RandomWindForce
 			});					
 		}
 	}
 // console.log(dataArray);
+// console.log(globalStatistic);
